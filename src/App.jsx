@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -6,10 +6,16 @@ import Body from "./components/Body";
 // import {  } from "react-router-dom";
 import Login from "./components/Login";
 import Browse from "./components/Browse";
-import { RouterProvider,createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  useNavigate,
+} from "react-router-dom";
+import { Provider, useDispatch } from "react-redux";
+import store from "./utils/store";
+import Demo from "./components/Demo";
 
 function App() {
-  const [count, setCount] = useState(0);
   const appRouter = createBrowserRouter([
     {
       path: "/",
@@ -23,13 +29,19 @@ function App() {
           path: "", // will match /browse
           element: <Browse />,
         },
+        {
+          path: "fer",
+          element: <Demo />,
+        },
       ],
     },
   ]);
 
   return (
     <>
-      <RouterProvider router={appRouter} />
+      <Provider store={store}>
+        <RouterProvider router={appRouter} />
+      </Provider>
     </>
   );
 }

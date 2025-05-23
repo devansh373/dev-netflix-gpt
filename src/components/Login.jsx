@@ -4,9 +4,12 @@ import { checkValidation } from "../utils/formValidationFunction";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../utils/userSlice";
 
 const Login = () => {
   const [name, setName] = useState("");
@@ -17,6 +20,8 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const switchSignInSignUp = () => {
     setIsSignUp((prev) => !prev);
   };
@@ -43,13 +48,34 @@ const Login = () => {
                 // Signed up
                 const user = userCredential.user;
                 console.log(user);
-                setName("");
-                setEmail("");
-                setPassword("");
-                setConfirmPassword("");
-                setIsLoading(false);
-                // console.log("first");
-                navigate("/");
+                updateProfile(auth.currentUser, {
+                  displayName: name,
+                  photoURL:
+                    "https://avatars.githubusercontent.com/u/104457146?v=4",
+                })
+                  .then(() => {
+                    // Profile updated!
+                    // ...
+                    const { uid, email, displayName, photoURL } =
+                      auth.currentUser;
+                    // dispatch(setUser(auth.currentUser));
+                    dispatch(setUser({ uid, email, displayName, photoURL }));
+                    setName("");
+                    setEmail("");
+                    setPassword("");
+                    setConfirmPassword("");
+                    setIsLoading(false);
+                    // console.log("first");
+                    navigate("/browse");
+                  })
+                  .catch((error) => {
+                    // An error occurred
+                    // ...
+                    setErrorMessage(`${errorCode} ${errorMessage}`);
+                    setIsLoading(false);
+                  });
+                // dispatch(setUser(user));
+
                 // console.log("first");
                 // ...
               })
@@ -58,6 +84,7 @@ const Login = () => {
                 const errorMessage = error.message;
                 setErrorMessage(`${errorCode} ${errorMessage}`);
                 setIsLoading(false);
+
                 // ..
               });
           } else {
@@ -66,7 +93,8 @@ const Login = () => {
               .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                console.log(user);
+                console.log(user,auth.currentUser);
+
                 setName("");
                 setEmail("");
                 setPassword("");
