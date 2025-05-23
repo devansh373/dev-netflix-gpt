@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Header from "./Header";
+import { checkValidation } from "../utils/formValidationFunction";
 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const switchSignInSignUp = () => {
     setIsSignUp((prev) => !prev);
   };
@@ -23,6 +25,8 @@ const Login = () => {
           const formData = new FormData(e.target);
           const data = Object.fromEntries(formData.entries());
           console.log(data);
+          setErrorMessage(checkValidation(data,isSignUp));
+          // console.log(checkValidation(data,isSignUp));
         }}
       >
         <h1 className="w-full font-bold text-2xl text-center m-3">{isSignUp?"Sign Up":"Sign In"}</h1>
@@ -33,7 +37,7 @@ const Login = () => {
               type="text"
               name="name"
               id="name"
-              placeholder="abc@example.com"
+              placeholder="John Doe "
               required
             />
           </>
@@ -58,13 +62,14 @@ const Login = () => {
         <label htmlFor="confirm-password">Confirm Password</label>
         <input
           type="password"
-          name="confirm-password"
+          name="confirmPassword"
           id="confirm-password"
           placeholder="Confirm Password"
           required
           />
           </>
           }
+          <p className="text-red-500 text-l">{errorMessage}</p>
 
         <button
           type="submit"
