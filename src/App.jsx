@@ -38,11 +38,11 @@ function App() {
   ]);
 
   return (
-    <>
+    <div className="bg-black">
       <Provider store={store}>
         <RouterProvider router={appRouter} />
       </Provider>
-    </>
+    </div>
   );
 }
 

@@ -10,3 +10,4 @@ export const Homepage_Background_Url =
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNjBjNjg3ZmFiZGNkYzk0NWVlZjFjMmIyNTZkZjZhNiIsIm5iZiI6MTc0ODA3ODgwMS4yODQsInN1YiI6IjY4MzE5MGQxNGNjYTQ1N2RmMTQxMzlmZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I7z-JIsLgtyghde_L12c_RHZDs_VV1tPpN5T9LWXrGQ'
   }
 };
+export const TMDB_Image_Url = "https://image.tmdb.org/t/p/w780";

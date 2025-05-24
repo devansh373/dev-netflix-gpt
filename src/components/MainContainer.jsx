@@ -14,7 +14,7 @@ const MainContainer = () => {
     console.log(mainMovie)
     useGetSpecificMovieVideos(mainMovie?.id);
   return (
-    <div className='relative w-screen h-screen overflow-hidden'>
+    <div className='relative w-full h-screen overflow-hidden'>
         <VideoTitle videoTitle={mainMovie?.original_title} overview={mainMovie?.overview}/>
         <Videobackground />
     </div>
