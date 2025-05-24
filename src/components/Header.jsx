@@ -45,7 +45,7 @@ const Header = () => {
     console.log(auth.currentUser);
   };
   return (
-    <div className="absolute top-0 left-0 p-14 w-full h-16 bg-gradient-to-b from-black flex items-center justify-between">
+    <div className="absolute top-0 left-0 p-14 w-full h-16 bg-gradient-to-b from-black flex items-center justify-between z-10">
       <img
         src={Netflix_Logo_Url}
         alt="Netflix logo"
@@ -59,7 +59,7 @@ const Header = () => {
             className="text-white text-sm cursor-pointer hover:text-gray-400 transition duration-200 ease-in-out"
             onClick={handleSignOut}
           >
-            "Sign Out"
+            Sign Out
           </span>
         </span>
       )}
