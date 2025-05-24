@@ -66,7 +66,7 @@ const Login = () => {
                     setConfirmPassword("");
                     setIsLoading(false);
                     // console.log("first");
-                    navigate("/browse");
+                    // navigate("/browse");
                   })
                   .catch((error) => {
                     // An error occurred
@@ -100,7 +100,7 @@ const Login = () => {
                 setPassword("");
                 setConfirmPassword("");
                 setIsLoading(false);
-                navigate("/browse");
+                // navigate("/browse");
                 // ...
               })
               .catch((error) => {
