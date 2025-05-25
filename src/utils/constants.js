@@ -11,3 +11,5 @@ export const Homepage_Background_Url =
   }
 };
 export const TMDB_Image_Url = "https://image.tmdb.org/t/p/w780";
+
+export const Gemini_API_Key = "AIzaSyBwVopFuCpxcC9Vs77cV0HdFDfFf9F3Jc4"

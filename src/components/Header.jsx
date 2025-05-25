@@ -6,8 +6,10 @@ import { useNavigate } from "react-router";
 import { auth } from "../utils/firebase";
 import { removeUser, setUser } from "../utils/userSlice";
 import { Netflix_Logo_Url } from "../utils/constants";
+import { clearGPTMovies, clearGPTSearch, setGPTSearch } from "../utils/gptSlice";
 const Header = () => {
   const dispatch = useDispatch();
+  const isGPTSearch = useSelector(store=>store.gpt.isGPTSearch)
   const navigate = useNavigate();
   const { displayName } = useSelector((store) => store.user.user);
 
@@ -23,6 +25,8 @@ const Header = () => {
         // User is signed out, redirect to the login page
         console.log("User is signed out");
         dispatch(removeUser());
+        dispatch(clearGPTMovies())
+        dispatch(clearGPTSearch())
         navigate("/");
       }
     });
@@ -44,15 +48,18 @@ const Header = () => {
       });
     console.log(auth.currentUser);
   };
+
+  const handleGPTSearchToggle = () => {
+    dispatch(setGPTSearch())
+  }
   return (
     <div className="absolute top-0 left-0 p-14 w-full h-16 bg-gradient-to-b from-black flex items-center justify-between z-10">
-      <img
-        src={Netflix_Logo_Url}
-        alt="Netflix logo"
-        className="w-44"
-      />
+      <img src={Netflix_Logo_Url} alt="Netflix logo" className="w-44" />
       {auth.currentUser && (
         <span className="flex items-center gap-2">
+          <button className="p-2 text-white bg-gray-500 hover:bg-gray-400 cursor-pointer rounded-lg" onClick={handleGPTSearchToggle}>
+            {isGPTSearch?"Home":"GPT Search"}
+          </button>
           <FaUserCircle className="text-white text-3xl cursor-pointer" />
           <span className="text-white">{displayName}</span>
           <span

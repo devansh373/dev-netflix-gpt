@@ -27,7 +27,7 @@ const Login = () => {
     setIsSignUp((prev) => !prev);
   };
   return (
-    <div className={`bg-[url(${Homepage_Background_Url})] bg-cover bg-no-repeat bg-center h-screen`}>
+    <div className={`netflix-hero-bg bg-cover bg-no-repeat bg-center h-screen`}>
       <Header />
 
       <form
