@@ -1,38 +1,43 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { auth } from "../utils/firebase";
 import { removeUser, setUser } from "../utils/userSlice";
 import { Netflix_Logo_Url } from "../utils/constants";
-import { clearGPTMovies, clearGPTSearch, setGPTSearch } from "../utils/gptSlice";
-const Header = () => {
+import {
+  clearGPTMovies,
+  clearGPTSearch,
+  setGPTSearch,
+} from "../utils/gptSlice";
+const Header = ({ isWatchPage }) => {
+  const [showUserDetails, setShowUserDetails] = useState(false);
+  const isGPTSearch = useSelector((store) => store.gpt.isGPTSearch);
   const dispatch = useDispatch();
-  const isGPTSearch = useSelector(store=>store.gpt.isGPTSearch)
   const navigate = useNavigate();
   const { displayName } = useSelector((store) => store.user.user);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const { uid, email, displayName } = user;
-        console.log(user);
-        // User is signed in, redirect to the home page
-        dispatch(setUser({ uid, email, displayName }));
-        navigate("/browse");
-      } else {
-        // User is signed out, redirect to the login page
-        console.log("User is signed out");
-        dispatch(removeUser());
-        dispatch(clearGPTMovies())
-        dispatch(clearGPTSearch())
-        navigate("/");
-      }
-    });
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       const { uid, email, displayName } = user;
+  //       console.log(user);
+  //       // User is signed in, redirect to the home page
+  //       dispatch(setUser({ uid, email, displayName }));
+  //       navigate("/browse");
+  //     } else {
+  //       // User is signed out, redirect to the login page
+  //       console.log("User is signed out");
+  //       dispatch(removeUser());
+  //       dispatch(clearGPTMovies());
+  //       dispatch(clearGPTSearch());
+  //       navigate("/");
+  //     }
+  //   });
 
-    return () => unsubscribe(); // Cleanup subscription on unmount
-  }, []);
+  //   return () => unsubscribe(); // Cleanup subscription on unmount
+  // }, []);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -50,24 +55,67 @@ const Header = () => {
   };
 
   const handleGPTSearchToggle = () => {
-    dispatch(setGPTSearch())
-  }
+    dispatch(setGPTSearch());
+  };
+  const handleUserAvatarHover = () => {};
   return (
     <div className="absolute top-0 left-0 p-14 w-full h-16 bg-gradient-to-b from-black flex items-center justify-between z-10">
-      <img src={Netflix_Logo_Url} alt="Netflix logo" className="w-44" />
+      <a href="/">
+        <img
+          src={Netflix_Logo_Url}
+          alt="Netflix logo"
+          className="w-44 cursor-pointer"
+        />
+      </a>
       {auth.currentUser && (
         <span className="flex items-center gap-2">
-          <button className="p-2 text-white bg-gray-500 hover:bg-gray-400 cursor-pointer rounded-lg" onClick={handleGPTSearchToggle}>
-            {isGPTSearch?"Home":"GPT Search"}
-          </button>
-          <FaUserCircle className="text-white text-3xl cursor-pointer" />
-          <span className="text-white">{displayName}</span>
-          <span
-            className="text-white text-sm cursor-pointer hover:text-gray-400 transition duration-200 ease-in-out"
-            onClick={handleSignOut}
-          >
-            Sign Out
-          </span>
+          {isWatchPage ? (
+            <Link
+              to={"/browse"}
+              className="p-2 text-white bg-amber-800 hover:bg-amber-900 cursor-pointer rounded-lg"
+            >
+              Home
+            </Link>
+          ) : (
+            <>
+              <button
+                className="p-2 text-white bg-amber-800 hover:bg-amber-900 cursor-pointer rounded-lg"
+                onClick={handleGPTSearchToggle}
+              >
+                {isGPTSearch ? "Home" : "GPT Search"}
+              </button>
+              <ul>
+                <li>
+                  <FaUserCircle
+                    className="text-white text-3xl cursor-pointer relative"
+                    onMouseOver={() => setShowUserDetails(true)}
+                    onMouseOut={() => setShowUserDetails(false)}
+                  />
+                </li>
+                {showUserDetails && (
+                  <div
+                    className="absolute top-16 right-4 bg-gray-800 p-4 rounded-lg shadow-lg z-20"
+                    onMouseOver={() => setShowUserDetails(true)}
+                    onMouseOut={() => setShowUserDetails(false)}
+                  >
+                    <li className="hover:bg-gray-700 p-2 rounded-lg">
+                      <span className="text-white cursor-default">
+                        {displayName}
+                      </span>
+                    </li>
+                    <li className="hover:bg-gray-700 p-2 rounded-lg">
+                      <span
+                        className="text-white text-sm cursor-pointer hover:text-gray-400 transition duration-200 ease-in-out"
+                        onClick={handleSignOut}
+                      >
+                        Sign Out
+                      </span>
+                    </li>
+                  </div>
+                )}
+              </ul>
+            </>
+          )}
         </span>
       )}
     </div>

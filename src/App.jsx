@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -14,24 +15,32 @@ import {
 import { Provider, useDispatch } from "react-redux";
 import store from "./utils/store";
 import Demo from "./components/Demo";
+import WatchPage from "./components/WatchPage";
+import { removeUser, setUser } from "./utils/userSlice";
+import { clearGPTMovies, clearGPTSearch } from "./utils/gptSlice";
 
 function App() {
   const appRouter = createBrowserRouter([
     {
       path: "/",
-      element: <Login />,
-    },
-    {
-      path: "/browse",
       element: <Body />, // Wrap this in a layout
       children: [
         {
-          path: "", // will match /browse
+          path: "/",
+          element: <Login />,
+        },
+        {
+          path: "browse", // will match /browse
           element: <Browse />,
         },
+
         {
           path: "fer",
           element: <Demo />,
+        },
+        {
+          path: "/watch/:movieId",
+          element: <WatchPage />,
         },
       ],
     },

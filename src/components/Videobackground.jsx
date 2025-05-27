@@ -6,7 +6,8 @@ const Videobackground = () => {
   console.log(trailerKey);
   return (
     trailerKey && (
-      <div className="w-screen h-screen">
+      <div className="w-screen h-screen relative overflow-hidden">
+        <div className="w-screen h-screen absolute top-0 left-0 z-5"></div>
         <iframe
             src={`https://www.youtube.com/embed/${trailerKey.key}?&autoplay=1&mute=1&controls=0&loop=1&hd=1`}
           // src={`https://www.youtube.com/embed/${trailerKey.key}`}

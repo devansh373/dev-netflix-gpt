@@ -9,7 +9,7 @@ const MoviesList = ({ category,movies }) => {
     <div className="relative">
       <h1 className="text-2xl font-medium my-4 px-4 text-white">{category}</h1>
       <div
-        className="  w-full flex items-center justify-around  text-white overflow-x-scroll p-2 no-scrollbar"
+        className="  w-full flex items-center justify-around gap-[5%]  text-white overflow-x-scroll p-2 my-12 no-scrollbar"
         onMouseOver={() => setShowArrow(true)}
         onMouseLeave={() => setShowArrow(false)}
       >
@@ -30,6 +30,7 @@ const MoviesList = ({ category,movies }) => {
               key={movie.id}
               title={movie.original_title}
               movie={movie.poster_path}
+              movieId={movie.id}
             />
           ))}
       </div>
