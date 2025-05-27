@@ -103,9 +103,9 @@ const Header = ({ isWatchPage }) => {
                         {displayName}
                       </span>
                     </li>
-                    <li className="hover:bg-gray-700 p-2 rounded-lg">
+                    <li className="hover:bg-gray-700 p-2 rounded-lg cursor-pointer ">
                       <span
-                        className="text-white text-sm cursor-pointer hover:text-gray-400 transition duration-200 ease-in-out"
+                        className="text-white text-sm hover:text-gray-400 transition duration-200 ease-in-out"
                         onClick={handleSignOut}
                       >
                         Sign Out

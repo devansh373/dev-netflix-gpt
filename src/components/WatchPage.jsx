@@ -9,6 +9,7 @@ import { setGPTSearch } from "../utils/gptSlice";
 import { TMDB_Image_Url } from "../utils/constants";
 import useGetSpecificMovieVideos from "../hooks/useGetSpecificMovieVideos";
 import Videobackground from "./Videobackground";
+import VideoTitle from "./VideoTitle";
 
 const WatchPage = () => {
   const params = useParams();
@@ -28,7 +29,9 @@ const WatchPage = () => {
   return (
     <div className="w-full">
       <Header isWatchPage={true} />
-      <Videobackground/>
+      <h1 className="text-white absolute top-0 left-[40%] p-2 bg-black/70 z-11">{movieObject?.original_title}</h1>
+      {/* <VideoTitle videoTitle={movieObject?.original_title} overview="" videoId={params?.movieId}/> */}
+      <Videobackground isWatchPage={true}/>
       {/* <div className="w-full h-screen relative">
         {/* <img src={TMDB_Image_Url+movieObject?.poster_path} alt="" className="w-[600px] h-[600px]" /> }
         <iframe
@@ -39,7 +42,6 @@ const WatchPage = () => {
           allowFullScreen
         ></iframe>
       </div> */}
-      <h1>{movieObject?.original_title}</h1>
     </div>
   );
 };

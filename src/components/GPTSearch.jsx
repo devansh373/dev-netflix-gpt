@@ -44,7 +44,7 @@ const GPTSearch = () => {
           {isLoading ? "Loading" : "Submit"}
         </button>
       </form>
-      <div className="w-full bg-gray-800/90 p-2 mt-2">
+      <div className={`w-full bg-gray-800/90 mt-2 ${gptMovies.length && "p-2"}`}>
         {inputValue.current &&
           gptMovies &&
           gptMovies.map((m1) => <MoviesList category={""} movies={m1} />)}

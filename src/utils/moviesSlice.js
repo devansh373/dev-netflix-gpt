@@ -31,9 +31,9 @@ const moviesSlice = createSlice({
     setMovieTrailer: (state, action) => {
       state.trailer = action.payload;
     },
-    // setWatchPageMovie: (state, action) => {
-    //   state.watchPageMovie = action.payload;
-    // },
+    setWatchPageMovie: (state, action) => {
+      state.watchPageMovie = action.payload;
+    },
   },
 });
 
