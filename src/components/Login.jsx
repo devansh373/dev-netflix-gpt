@@ -169,12 +169,12 @@ const Login = () => {
 
         <button
           type="submit"
-          className="w-36 p-2 text-xl border border-gray-400 rounded-lg mt-4 cursor-pointer hover:bg-gray-800"
+          className="w-36 p-2 text-xl border border-gray-400 rounded-lg mt-4 cursor-pointer bg-amber-800 hover:bg-gray-800"
         >
           {isLoading ? "Loading..." : "Submit"}
         </button>
         <p
-          className="p-4 mt-2 w-full hover:underline cursor-pointer"
+          className="p-4 mt-2 w-full hover:underline cursor-pointer hover:text-white text-amber-800"
           onClick={switchSignInSignUp}
         >
           {isSignUp
