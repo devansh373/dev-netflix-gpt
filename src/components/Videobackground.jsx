@@ -6,9 +6,9 @@ const Videobackground = ({ isWatchPage }) => {
   console.log(trailerKey);
   return (
     trailerKey && (
-      <div className="w-screen h-screen relative overflow-hidden">
+      <div className="w-full h-screen relative overflow-hidden">
         <div
-          className={`w-screen h-screen absolute top-0 left-0 ${
+          className={`w-full h-screen absolute top-0 left-0 ${
             !isWatchPage ? "z-5" : "-z-1"
           }`}
         ></div>
@@ -19,7 +19,7 @@ const Videobackground = ({ isWatchPage }) => {
           // src={`https://www.youtube.com/embed/${trailerKey.key}`}
           //   className="z-20 w-screen h-screen aspect-video"
           className={`${
-            !isWatchPage ? "w-screen aspect-video scale-[1.5]" : "w-screen max-h-[100vh] aspect-video scale-[1]"
+            !isWatchPage ? "w-full aspect-video scale-[1.5]" : "w-full max-h-[100vh] aspect-video scale-[1]"
           }`}
           allowFullScreen
           //   className="w-[90%] h-[90%]"

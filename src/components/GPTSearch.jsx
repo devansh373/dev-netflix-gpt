@@ -4,6 +4,8 @@ import MoviesList from "./MoviesList";
 import { useDispatch, useSelector } from "react-redux";
 import { setGPTMovies } from "../utils/gptSlice";
 import useGPTMovieSearch from "../hooks/useGPTMovieSearch";
+import { RiErrorWarningLine } from "react-icons/ri";
+
 const GPTSearch = () => {
   const inputValue = useRef();
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ const GPTSearch = () => {
           name="movie-name"
           id="movie-name"
           onChange={(e) => (inputValue.current = e.target.value)}
-          placeholder="Try 'Indian Horror Movies'"
+          placeholder="Try 'Horror Movies'"
           className="p-2 text-xl rounded-lg text-white w-[80%] border border-white"
         />
         <button
@@ -44,7 +46,12 @@ const GPTSearch = () => {
           {isLoading ? "Loading" : "Submit"}
         </button>
       </form>
-      <div className={`w-full bg-gray-800/90 mt-2 ${gptMovies.length && "p-2"}`}>
+      <h1 className="text-white text-center text-xl flex justify-center items-center gap-2 underline mt-2">
+        <RiErrorWarningLine className="text-3xl  font-bold" /> Ai search results are not accurate!
+      </h1>
+      <div
+        className={`w-full bg-gray-800/90 mt-2 ${gptMovies.length && "p-2"}`}
+      >
         {inputValue.current &&
           gptMovies &&
           gptMovies.map((m1) => <MoviesList category={""} movies={m1} />)}

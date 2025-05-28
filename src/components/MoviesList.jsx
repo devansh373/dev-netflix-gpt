@@ -9,7 +9,7 @@ const MoviesList = ({ category,movies }) => {
     <div className="relative ">
       <h1 className="text-2xl font-medium mt-17 px-4 text-white">{category}</h1>
       <div
-        className="  w-full flex items-center justify-around gap-[5%]  text-white overflow-x-scroll p-2 mt-12 no-scrollbar "
+        className="  w-full flex items-center justify-around gap-[5%]  text-white overflow-x-scroll p-2 mt-12 no-scrollbar hover:bg-gray-800/20 transition-all delay-100 ease-in-out"
         // border border-amber-100
         onMouseOver={() => setShowArrow(true)}
         onMouseLeave={() => setShowArrow(false)}

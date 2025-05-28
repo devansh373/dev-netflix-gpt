@@ -29,9 +29,9 @@ const WatchPage = () => {
   return (
     <div className="w-full">
       <Header isWatchPage={true} />
-      <h1 className="text-white absolute top-0 left-[40%] p-2 bg-black/70 z-11">{movieObject?.original_title}</h1>
-      {/* <VideoTitle videoTitle={movieObject?.original_title} overview="" videoId={params?.movieId}/> */}
+      {/* <h1 className="text-white absolute top-0 left-[40%] p-2 bg-black/70 z-11">{movieObject?.original_title}</h1> */}
       <Videobackground isWatchPage={true}/>
+      <VideoTitle videoTitle={movieObject?.original_title} overview={movieObject?.overview} videoId={params?.movieId} isWatchPage={true} movieDetails={movieObject}/>
       {/* <div className="w-full h-screen relative">
         {/* <img src={TMDB_Image_Url+movieObject?.poster_path} alt="" className="w-[600px] h-[600px]" /> }
         <iframe

@@ -17,13 +17,14 @@ const Browse = () => {
   useGetUpcomingMovies();
   return (
     // <div className="netflix-hero-bg filter brightness-75 ">
-    <div className="bg-red-950 ">
+    <div className="bg-red-950 svg-bg">
       
       {/* <div className="z-[2]"></div> */}
       <Header />
       {isGPTSearch ? (
         <GPTSearch />
       ) : (
+        
         <>
           <MainContainer />
           <SecondaryContainer />

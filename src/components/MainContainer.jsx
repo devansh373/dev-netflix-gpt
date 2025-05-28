@@ -16,7 +16,7 @@ const MainContainer = () => {
   return (
     <div className='relative w-full h-screen overflow-hidden'>
         <VideoTitle videoTitle={mainMovie?.original_title} overview={mainMovie?.overview} videoId = {mainMovie?.id}/>
-        <Videobackground />
+        <Videobackground isWatchPage={false} />
     </div>
   )
 }

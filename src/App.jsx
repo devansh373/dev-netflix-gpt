@@ -23,7 +23,7 @@ function App() {
   const appRouter = createBrowserRouter([
     {
       path: "/",
-      element: <Body />, // Wrap this in a layout
+      element: <Body />, 
       children: [
         {
           path: "/",
@@ -34,10 +34,10 @@ function App() {
           element: <Browse />,
         },
 
-        {
-          path: "fer",
-          element: <Demo />,
-        },
+        // {
+        //   path: "fer",
+        //   element: <Demo />,
+        // },
         {
           path: "/watch/:movieId",
           element: <WatchPage />,
