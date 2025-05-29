@@ -18,6 +18,7 @@ import Demo from "./components/Demo";
 import WatchPage from "./components/WatchPage";
 import { removeUser, setUser } from "./utils/userSlice";
 import { clearGPTMovies, clearGPTSearch } from "./utils/gptSlice";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -41,6 +42,10 @@ function App() {
         {
           path: "/watch/:movieId",
           element: <WatchPage />,
+        },
+        {
+          path: "/movieDetails/:movieId",
+          element: <MovieDetails />,
         },
       ],
     },

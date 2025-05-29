@@ -1,6 +1,6 @@
 import React from "react";
 import { FaPlay } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const VideoTitle = ({
   videoTitle,
@@ -9,6 +9,7 @@ const VideoTitle = ({
   isWatchPage,
   movieDetails,
 }) => {
+  const navigate = useNavigate()
   const obj = {
     adult: false,
     backdrop_path: "/14UFWFJsGeInCbhTiehRLTff4Yx.jpg",
@@ -117,7 +118,7 @@ const VideoTitle = ({
                 <FaPlay />
                 <button>Play</button>
               </Link>
-              <button className="w-[200px] p-3 bg-gray-400 text-white font-medium text-xl rounded-lg mx-2 cursor-pointer hover:bg-gray-500 ">
+              <button className="w-[200px] p-3 bg-gray-400 text-white font-medium text-xl rounded-lg mx-2 cursor-pointer hover:bg-gray-500 " onClick={()=>navigate(`/movieDetails/${videoId}`)}>
                 More Info
               </button>
             </>
