@@ -1,6 +1,7 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import { FaUserCircle } from "react-icons/fa";
+import { FaSearch, FaUserCircle } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { auth } from "../utils/firebase";
@@ -11,12 +12,18 @@ import {
   clearGPTSearch,
   setGPTSearch,
 } from "../utils/gptSlice";
+import { setIsSearchMovie } from "../utils/moviesSlice";
+import useSearchMovies from "../hooks/useSearchMovies";
+// import useSearchSingleMovieById from "../hooks/useSearchSingleMovieById";
 const Header = ({ isWatchPage }) => {
   const [showUserDetails, setShowUserDetails] = useState(false);
+  const [isSearchbarFull, setIsSearchbarFull] = useState(false);
+  const [searchInputValue, setSearchInputValue] = useState("");
   const isGPTSearch = useSelector((store) => store.gpt.isGPTSearch);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { displayName } = useSelector((store) => store.user.user);
+  useSearchMovies(searchInputValue)
 
   // useEffect(() => {
   //   const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -39,6 +46,12 @@ const Header = ({ isWatchPage }) => {
   //   return () => unsubscribe(); // Cleanup subscription on unmount
   // }, []);
 
+  // useEffect(()=>{
+  //   console.log(searchInputValue)
+  // },[searchInputValue])
+  const handleSearch=(query)=>{
+  console.log(searchInputValue)
+}
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -57,7 +70,7 @@ const Header = ({ isWatchPage }) => {
   const handleGPTSearchToggle = () => {
     dispatch(setGPTSearch());
   };
-  const handleUserAvatarHover = () => {};
+  // const handleUserAvatarHover = () => {};
   return (
     <div className="absolute top-0 left-0 p-14 w-full h-16 bg-gradient-to-b from-black flex items-center justify-between z-10">
       <a href="/">
@@ -78,6 +91,49 @@ const Header = ({ isWatchPage }) => {
             </Link>
           ) : (
             <>
+              <span
+                className="text-white cursor-pointer p-2 flex items-center gap-2"
+                onClick={() => {}}
+              >
+                <input
+                  type="text"
+                  value={searchInputValue}
+                  className={` transition-all delay-75 ease-in-out ${
+                    isSearchbarFull
+                      ? "w-[500px] border border-amber-800 rounded-lg p-2"
+                      : "w-0"
+                  }`}
+                  // onBlur={() => {
+                  //   setIsSearchbarFull(false);
+                  //   dispatch(setIsSearchMovie(false));
+                  // }}
+                  onFocus={() => dispatch(setIsSearchMovie(true))}
+                  onChange={(e)=>{
+                    setSearchInputValue(e.target.value)
+                    
+                    // dispatch()
+                  }}
+                />
+
+                {isSearchbarFull ? (
+                  <FaXmark
+                    className=" text-xl"
+                    onClick={() => {
+                      setIsSearchbarFull(false);
+                      dispatch(setIsSearchMovie(false));
+                    }}
+                  />
+                ) : (
+                  <FaSearch
+                    className=" text-xl"
+                    onClick={() => {
+                      setIsSearchbarFull(true);
+                      dispatch(setIsSearchMovie(true));
+                    }}
+                  />
+                )}
+              </span>
+
               <button
                 className="p-2 text-white bg-amber-800 hover:bg-amber-900 cursor-pointer rounded-lg"
                 onClick={handleGPTSearchToggle}

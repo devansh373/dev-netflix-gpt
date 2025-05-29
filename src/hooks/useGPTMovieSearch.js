@@ -1,6 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Gemini_API_Key, TMDB_Api_Options } from "../utils/constants";
-import useSearchSingleMovie from "./useSearchSingleMovie";
+// import useSearchSingleMovie from "./useSearchSingleMovie";
 
 const callApi = async (movieName) => {
   // useSearchSingleMovie(movieName);

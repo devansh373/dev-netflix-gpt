@@ -30,7 +30,7 @@ const MoviesList = ({ category,movies }) => {
             <MovieCard
               key={movie.id}
               title={movie.original_title}
-              movie={movie.poster_path}
+              movieImagePath={movie.poster_path}
               movieId={movie.id}
             />
           ))}

@@ -17,13 +17,13 @@ const WatchPage = () => {
   const movieObject = useSelector((store) => store.movies.watchPageMovie);
   const trailer = useSelector((store) => store.movies.trailer);
   console.log(movieObject, trailer);
+  const data = useSearchSingleMovieById(params.movieId)
   //   const [movieObject, setMovieObject] = useState({});
   useEffect(() => {
-    useSearchSingleMovieById(params.movieId).then((data) => {
       // console.log("Movie Data:", data);
-      dispatch(setWatchPageMovie(data));
-    });
-  }, []);
+      data && dispatch(setWatchPageMovie(data));
+    
+  }, [data]);
   useGetSpecificMovieVideos(params?.movieId);
 
   return (

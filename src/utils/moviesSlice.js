@@ -9,6 +9,8 @@ const moviesSlice = createSlice({
     upcomingMovies: [],
     trailer: null,
     watchPageMovie: null,
+    isSearchMovie:false,
+    searchedMovies:[]
     // watchPageMovieVideo: null,//Videos api is different, to save one api call this is done
   },
   reducers: {
@@ -34,6 +36,12 @@ const moviesSlice = createSlice({
     setWatchPageMovie: (state, action) => {
       state.watchPageMovie = action.payload;
     },
+    setIsSearchMovie: (state, action) => {
+      state.isSearchMovie = action.payload;
+    },
+    setSearchedMovies: (state, action) => {
+      state.searchedMovies = action.payload;
+    },
   },
 });
 
@@ -45,5 +53,7 @@ export const {
   setTopRatedMovies,
   setUpcomingMovies,
   setWatchPageMovie,
+  setIsSearchMovie,
+  setSearchedMovies
 } = moviesSlice.actions;
 export default moviesSlice.reducer;

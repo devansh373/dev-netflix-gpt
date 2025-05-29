@@ -8,9 +8,11 @@ import { use } from "react";
 import useGetUpcomingMovies from "../hooks/useGetUpcomingMovies";
 import { useSelector } from "react-redux";
 import GPTSearch from "./GPTSearch";
+import SearchMovieComponent from "./SearchMovieComponent";
 
 const Browse = () => {
   const isGPTSearch = useSelector((store) => store.gpt?.isGPTSearch);
+  const isSearchMovie = useSelector((store) => store.movies.isSearchMovie);
   useGetNowPlayingMovies();
   useGetPopularMovies();
   useGetTopRatedMovies();
@@ -18,16 +20,22 @@ const Browse = () => {
   return (
     // <div className="netflix-hero-bg filter brightness-75 ">
     <div className="bg-red-950 svg-bg">
-      
       {/* <div className="z-[2]"></div> */}
       <Header />
       {isGPTSearch ? (
         <GPTSearch />
       ) : (
-        
         <>
-          <MainContainer />
-          <SecondaryContainer />
+          {isSearchMovie ? (
+            <>
+            <SearchMovieComponent/>
+            </>
+          ) : (
+            <>
+              <MainContainer />
+              <SecondaryContainer />
+            </>
+          )}
         </>
       )}
     </div>
