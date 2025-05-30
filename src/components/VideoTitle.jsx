@@ -87,17 +87,17 @@ const VideoTitle = ({
     <div
       className={`${
         !isWatchPage && "absolute"
-      } w-full bottom-0 h-full text-white shadow-lg bg-gradient-to-r from-black/30 to-transparent flex flex-col-reverse z-6 ${isWatchPage &&"svg-bg"}`}
+      } w-full  sm:bottom-0 h-full text-white shadow-lg bg-gradient-to-r from-black/30 to-transparent flex flex-col-reverse z-6 ${isWatchPage &&" pt-[14%] svg-bg"}`}
     >
       <div
         className={`w-full p-10 ${
           isWatchPage && "flex flex-col justify-center items-center"
         }`}
       >
-        <h1 className="text-3xl font-bold  p-4 w-[500px] rounded-lg text-center">
+        <h1 className="sm:text-3xl font-bold  p-4 sm:w-[500px] rounded-lg text-center">
           {videoTitle}
         </h1>
-        <h1 className="w-[600px]">{overview}</h1>
+        <h1 className="text-sm text-justify sm:w-[600px] max-h-[50px]  text-ellipsis line-clamp-2">{overview}</h1>
         <div className="flex items-center gap-2 mt-3">
           {isWatchPage ? (
             <div className="">
@@ -113,12 +113,12 @@ const VideoTitle = ({
             <>
               <Link
                 to={`/watch/${videoId}`}
-                className="w-[200px] p-3 bg-gray-100 text-black font-medium text-xl rounded-lg mx-2 flex gap-2 items-center pl-15 cursor-pointer hover:bg-gray-400"
+                className="sm:w-[200px] w-[100px] p-2 sm:p-3 bg-gray-100 text-black font-medium text-lg sm:text-xl rounded-lg mx-2 flex gap-2 items-center sm:pl-15 pl-5 cursor-pointer hover:bg-gray-400"
               >
                 <FaPlay />
                 <button>Play</button>
               </Link>
-              <button className="w-[200px] p-3 bg-gray-400 text-white font-medium text-xl rounded-lg mx-2 cursor-pointer hover:bg-gray-500 " onClick={()=>navigate(`/movieDetails/${videoId}`)}>
+              <button className="sm:w-[200px] w-[100px] p-2 sm:p-3 bg-gray-400 text-white sm:font-medium sm:text-xl text-lg rounded-lg mx-2 cursor-pointer hover:bg-gray-500 " onClick={()=>navigate(`/movieDetails/${videoId}`)}>
                 More Info
               </button>
             </>

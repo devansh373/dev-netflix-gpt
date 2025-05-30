@@ -72,7 +72,7 @@ const Header = ({ isWatchPage }) => {
   };
   // const handleUserAvatarHover = () => {};
   return (
-    <div className="absolute top-0 left-0 p-14 w-full h-16 bg-gradient-to-b from-black flex items-center justify-between z-10">
+    <div className="absolute top-0 left-0 p-2 sm:p-14 w-full h-21 sm:bg-gradient-to-b sm:from-black flex flex-row items-center justify-between z-10 bg-amber-950 sm:bg-transparent">
       <a href="/">
         <img
           src={Netflix_Logo_Url}
@@ -100,7 +100,7 @@ const Header = ({ isWatchPage }) => {
                   value={searchInputValue}
                   className={` transition-all delay-75 ease-in-out ${
                     isSearchbarFull
-                      ? "w-[500px] border border-amber-800 rounded-lg p-2"
+                      ? "sm:w-[500px] border border-amber-800 rounded-lg p-2"
                       : "w-0"
                   }`}
                   // onBlur={() => {

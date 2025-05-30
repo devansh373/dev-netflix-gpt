@@ -22,12 +22,12 @@ const GPTSearch = () => {
 
   return (
     <div
-      className={`pt-[15%] w-full ${
+      className={`pt-[29%] sm:pt-[15%] w-full ${
         !gptMovies.length > 0 && "h-screen"
       }  netflix-hero-bg bg-cover bg-no-repeat bg-center`}
     >
       <form
-        className=" w-[600px] h-[200px] mx-auto p-4 bg-gray-800/90 flex items-center rounded-lg border border-white"
+        className=" sm:w-[600px]  sm:h-[200px] mx-auto p-4 bg-gray-800/90 flex items-center rounded-lg border border-white"
         onSubmit={(e) => handleSubmit(e)}
       >
         <input
