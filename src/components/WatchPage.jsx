@@ -22,12 +22,12 @@ const WatchPage = () => {
   useEffect(() => {
       // console.log("Movie Data:", data);
       data && dispatch(setWatchPageMovie(data));
-    
+    return ()=>dispatch(setWatchPageMovie(null))
   }, [data]);
   useGetSpecificMovieVideos(params?.movieId);
 
   return (
-    <div className="w-full">
+    <div className={`w-full h-screen svg-bg`}>
       <Header isWatchPage={true} />
       {/* <h1 className="text-white absolute top-0 left-[40%] p-2 bg-black/70 z-11">{movieObject?.original_title}</h1> */}
       <Videobackground isWatchPage={true}/>

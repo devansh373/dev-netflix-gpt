@@ -6,6 +6,7 @@ import useGetSpecificMovieVideos from '../hooks/useGetSpecificMovieVideos'
 
 const MainContainer = () => {
     const movies = useSelector(store=>store.movies.nowPlayingMovies)
+    const movieObject = useSelector((store) => store.movies.watchPageMovie);
     console.log(movies)
     if(!movies) return;
     const mainMovie = movies[Math.floor(Math.random() * movies.length)];
@@ -14,7 +15,7 @@ const MainContainer = () => {
     console.log(mainMovie)
     useGetSpecificMovieVideos(mainMovie?.id);
   return (
-    <div className='relative w-full h-screen overflow-hidden'>
+    <div className={`relative w-full ${!movieObject ?"h-[60vh]":"h-screen"} sm:h-screen overflow-hidden`}>
         <VideoTitle videoTitle={mainMovie?.original_title} overview={mainMovie?.overview} videoId = {mainMovie?.id}/>
         <Videobackground isWatchPage={false} />
     </div>

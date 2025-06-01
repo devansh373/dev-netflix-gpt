@@ -6,7 +6,7 @@ const Videobackground = ({ isWatchPage }) => {
   console.log(trailerKey);
   return (
     trailerKey && (
-      <div className=" pt-[20%] sm:pt-0 w-full sm:h-screen relative overflow-hidden">
+      <div className={` pt-[20%] sm:pt-0 w-full ${!isWatchPage ? "h-[50vh]":"h-[35vh]"} sm:h-screen relative overflow-hidden`}>
         <div
           className={`w-full sm:h-screen absolute top-0 left-0 ${
             !isWatchPage ? "z-5" : "-z-1"

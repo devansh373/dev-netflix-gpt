@@ -86,8 +86,8 @@ const VideoTitle = ({
     // w-[700px]
     <div
       className={`${
-        !isWatchPage && "absolute"
-      } w-full  sm:bottom-0 h-full text-white shadow-lg bg-gradient-to-r from-black/30 to-transparent flex flex-col-reverse z-6 ${isWatchPage &&" pt-[14%] svg-bg"}`}
+        !isWatchPage ? "absolute h-[63vh]":"h-[32vh]"
+      } w-full  sm:bottom-0 sm:h-full  text-white shadow-lg bg-gradient-to-r from-black/30 to-transparent flex flex-col-reverse z-6 ${isWatchPage &&" pt-[14%] svg-bg"}`}
     >
       <div
         className={`w-full p-10 ${
